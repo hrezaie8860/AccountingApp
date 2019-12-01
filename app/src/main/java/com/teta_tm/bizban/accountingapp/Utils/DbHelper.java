@@ -123,7 +123,7 @@ public class DbHelper extends SQLiteOpenHelper{
     private static final String INVOICE_TOTAL_AMOUNT= "TOTAL_INVOICE_AMOUNT";
     private static final String INVOICE_ADDITION= "ADDITION";
     private static final String INVOICE_DEDUCTION = "DEDUCTION";
-    private static final String INVOICE_INVOICE_DATA = "INVOICE_DATE";
+    private static final String INVOICE_INVOICE_DATE = "INVOICE_DATE";
     private static final String INVOICE_INVOICE_ITEM_ID = "INVOICE_ITEM_ID";
     private static final String INVOICE_DISCOUNT = "DISCOUNT";
     private static final String INVOICE_TOTAL_BALANCE = "TOTAL_BALANCE";
@@ -286,7 +286,7 @@ public class DbHelper extends SQLiteOpenHelper{
                 INVOICE_TOTAL_AMOUNT + " DOUBLE , " +
                 INVOICE_ADDITION + " DOUBLE," +
                 INVOICE_DEDUCTION + " DOUBLE , " +
-                INVOICE_INVOICE_DATA + " VARCHAR(10) , " +
+                INVOICE_INVOICE_DATE + " VARCHAR(10) , " +
                 INVOICE_INVOICE_ITEM_ID + " VARCHAR(10) , " +
                 INVOICE_DISCOUNT + " DOUBLE , " +
                 INVOICE_TOTAL_BALANCE + " DOUBLE ) ";
@@ -361,4 +361,5 @@ public class DbHelper extends SQLiteOpenHelper{
         onCreate(db);
 
     }
+
 }
