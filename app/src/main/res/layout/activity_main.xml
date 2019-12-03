@@ -92,15 +92,15 @@
         android:hint="invoice type"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/invoice_id" />
+        app:layout_constraintTop_toBottomOf="@+id/total_balance" />
 
     <EditText
-        android:id="@+id/invoice_id"
+        android:id="@+id/total_balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="number"
-        android:hint="invoice_id"
+        android:hint="total_balance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/customer_code" />
@@ -151,16 +151,16 @@
         android:layout_height="wrap_content"
         android:text="update"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/find"
+        app:layout_constraintEnd_toEndOf="@+id/view"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/delete"
-        app:layout_constraintTop_toBottomOf="@+id/find" />
+        app:layout_constraintTop_toBottomOf="@+id/view" />
 
     <Button
-        android:id="@+id/find"
+        android:id="@+id/view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="find"
+        android:text="view"
         app:layout_constraintEnd_toEndOf="@+id/total_amount"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/add"

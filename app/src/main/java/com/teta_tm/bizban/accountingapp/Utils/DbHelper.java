@@ -1,6 +1,8 @@
 package com.teta_tm.bizban.accountingapp.Utils;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -137,16 +139,16 @@ public class DbHelper extends SQLiteOpenHelper{
     private static final String INVOICE_ITEM_PRODUCT_NAME= "PRODUCT_NAME";
     private static final String INVOICE_ITEM_PRODUCT_ID= "PRODUCT_ID";
 
-    public DbHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version, @Nullable DatabaseErrorHandler errorHandler) {
-        super(context, DB_NAME, null, 1, errorHandler);
+    public DbHelper(@Nullable Context context) {
+        super(context, DB_NAME, null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         String create_customer_table = "CREATE TABLE " +
                 CUSTOMER_TABLE + " ( " +
-                CUSTOMER_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
-                CUSTOMER_PERSON_ID + " INT," +
+                CUSTOMER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                CUSTOMER_PERSON_ID + " INT ," +
                 CUSTOMER_CREDIT + " INTIGER , " +
                 CUSTOMER_DEBT + " INTIGER , " +
                 CUSTOMER_ADDRESS + " TEXT , " +
@@ -156,20 +158,20 @@ public class DbHelper extends SQLiteOpenHelper{
 
         String create_person_table = "CREATE TABLE " +
                 PERSON_TABLE + " ( " +
-                PERSON_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                PERSON_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 PERSON_NAME + " VARCHAR(25) ," +
                 PERSON_LNAME + " VARCHAR(25) ) ";
         db.execSQL(create_person_table);
 
         String create_user_table = "CREATE TABLE " +
                 USER_TABLE + " ( " +
-                USER_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 USER_PERSON_ID + " INT )";
         db.execSQL(create_user_table);
 
         String create_bnk_account_table = "CREATE TABLE " +
                 BNK_ACCOUNT_TABLE + " ( " +
-                BNK_ACCOUNT_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                BNK_ACCOUNT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 BNK_ACCOUNT_NUM + " DOUBLE(30)," +
                 BNK_ACCOUNT_BNK_NAME + " VARCHAR(25)," +
                 BNK_ACCOUNT_CARD_NUM + " DOUBLE(16)," +
@@ -179,14 +181,14 @@ public class DbHelper extends SQLiteOpenHelper{
 
         String create_cash_box_table = "CREATE TABLE " +
                 CASH_BOX_TABLE + " ( " +
-                CASH_BOX_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                CASH_BOX_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 CASH_BOX_FIRST_CASH + " DOUBLE(30) ," +
                 CASH_BOX_NAME + " VARCHAR(25) ) ";
         db.execSQL(create_cash_box_table);
 
         String create_transaction_table = "CREATE TABLE " +
                 TRANSACTIONS_TABLE + " ( " +
-                TRANSACTION_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                TRANSACTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 TRANSACTION_DATE + " VARCHAR," +
                 TRANSACTION_BNK_ACNT_ID + " INT , " +
                 TRANSACTION_BOX_ID + " INT , " +
@@ -199,7 +201,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
         String create_transaction_tp_table = "CREATE TABLE " +
                 TRANSACTION_TYPE_TABLE + " ( " +
-                TRANSACTION_TP_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                TRANSACTION_TP_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 TRANSACTION_TP_PAYMENT + " VARCHAR(10)," +
                 TRANSACTION_TP_RECEIVE + " VARCHAR(10) , " +
                 TRANSACTION_TP_TRANSFERS + " VARCHAR(15) , " +
@@ -209,7 +211,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
         String create_installment_table = "CREATE TABLE " +
                 INSTALLMENT_TABLE + " ( " +
-                INSTALLMENT_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                INSTALLMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 INSTALLMENT_CUSTOMER_ID + " INT," +
                 INSTALLMENT_CUSTOMER_NAME + " VARCHAR(25) , " +
                 INSTALLMENT_START_DATE + " VARCHAR(10) , " +
@@ -220,7 +222,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
         String create_check_table = "CREATE TABLE " +
                 CHECK_TABLE + " ( " +
-                CHECK_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                CHECK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 CHECK_BNK_NAME + " VARCHAR(25)," +
                 CHECK_AMOUNT + " DOUBLE(15) , " +
                 CHECK_NUM + " VARCHAR(15) , " +
@@ -233,14 +235,14 @@ public class DbHelper extends SQLiteOpenHelper{
 
         String create_company_check_table = "CREATE TABLE " +
                 COMPANY_CHECK_TABLE + " ( " +
-                COMPANY_CHECK_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                COMPANY_CHECK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COMPANY_CHECK_CSTMR_ID + " INT," +
                 COMPANY_CHECK_CHECK_ID + " INT ) ";
         db.execSQL(create_company_check_table);
 
         String create_customer_check_table = "CREATE TABLE " +
                 CUSTOMER_CHECK_TABLE + " ( " +
-                CUSTOMER_CHECK_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                CUSTOMER_CHECK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 CUSTOMER_CHECK_CSTMR_ID_RECEIVE_FROM + " INT," +
                 CUSTOMER_CHECK_CSTMR_NAME_RECEIVE_FROM + " INTIGER(25) , " +
                 CUSTOMER_CHECK_RECEIVE_DATE + " VARCHAR(10) ) ";
@@ -248,20 +250,20 @@ public class DbHelper extends SQLiteOpenHelper{
 
         String create_warehouse_table = "CREATE TABLE " +
                 WAREHOUSE_TABLE + " ( " +
-                WAREHOUSE_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                WAREHOUSE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 WAREHOUSE_NAME + " VARCHAR(20)," +
                 WAREHOUSE_RESPONSIBLE_NAME + " VARCHAR(25) ) ";
         db.execSQL(create_warehouse_table);
 
         String create_grouping_table = "CREATE TABLE " +
                 GROUPING_TABLE + " ( " +
-                GROUPING_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                GROUPING_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 GROUPING_NAME + " VARCHAR(20) ) ";
         db.execSQL(create_grouping_table);
 
         String create_product_table = "CREATE TABLE " +
                 PRODUCT_TABLE + " ( " +
-                PRODUCT_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 PRODUCT_NAME + " VARCHAR(30)," +
                 PRODUCT_GROUPING_ID + " INT , " +
                 PRODUCT_FIRST_STOCK + " VHARCHAR , " +
@@ -272,13 +274,13 @@ public class DbHelper extends SQLiteOpenHelper{
 
         String create_counting_unit_table = "CREATE TABLE " +
                 COUNTING_UNIT_TABLE + " ( " +
-                COUNTING_UNIT_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                COUNTING_UNIT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 COUNTING_UNIT_NAME + " VARCHAR(25) ) ";
         db.execSQL(create_counting_unit_table);
 
         String create_invoice_table = "CREATE TABLE " +
                 INVOICE_TABLE + " ( " +
-                INVOICE_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                INVOICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 INVOICE_CUSTOMER_NAME + " VARCHAR(25)," +
                 INVOICE_CUSTOMER_ID + " INT , " +
                 INVOICE_INVOICE_TYPE + " VARCHAR(15) , " +
@@ -294,7 +296,7 @@ public class DbHelper extends SQLiteOpenHelper{
 
         String create_invoice_item_table = "CREATE TABLE " +
                 INVOICE_ITEM_TABLE + " ( " +
-                INVOICE_ITEM_ID + " INT PRIMARY KEY AUTOINCREMENT, " +
+                INVOICE_ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 INVOICE_ITEM_FEE + " DOUBLE," +
                 INVOICE_ITEM_AMOUNT + " DOUBLE , " +
                 INVOICE_ITEM_NUMBER + " INT , " +
@@ -359,6 +361,34 @@ public class DbHelper extends SQLiteOpenHelper{
 
         db.execSQL("DROP TABLE IF EXISTS " + INVOICE_ITEM_TABLE);
         onCreate(db);
+
+    }
+    public boolean insertData (String customerName,String customerID, String type,String descripe, String totalAmaount,
+                               String addition, String deduction, String date, String invoItemID, String discount, String totalBalance){
+        SQLiteDatabase db = this. getWritableDatabase();
+        ContentValues val= new ContentValues();
+        val.put(INVOICE_CUSTOMER_NAME,customerName);
+        val.put(INVOICE_CUSTOMER_ID,customerID);
+        val.put(INVOICE_INVOICE_TYPE,type);
+        val.put(INVOICE_DESCRIPTION,descripe);
+        val.put(INVOICE_TOTAL_AMOUNT,totalAmaount);
+        val.put(INVOICE_ADDITION,addition);
+        val.put(INVOICE_DEDUCTION,deduction);
+        val.put(INVOICE_INVOICE_DATE,date);
+        val.put(INVOICE_INVOICE_ITEM_ID,invoItemID);
+        val.put(INVOICE_DISCOUNT,discount);
+        val.put(INVOICE_TOTAL_BALANCE,totalBalance);
+        long result = db.insert(INVOICE_TABLE,null,val);
+        if( result== -1)
+            return false;
+        else
+            return true;
+    }
+
+    public Cursor getAllData(){
+        SQLiteDatabase db = this. getWritableDatabase();
+        Cursor res = db.rawQuery("select * from " + INVOICE_TABLE, null);
+        return res;
 
     }
 
