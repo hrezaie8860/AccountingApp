@@ -85,13 +85,13 @@ public class DbHelper extends SQLiteOpenHelper{
 
     private static final String COMPANY_CHECK_TABLE= "company_check";
     private static final String COMPANY_CHECK_ID = "COMPANY_CHECK_ID";
-    private static final String COMPANY_CHECK_CSTMR_ID = "CUSTOMER_ID";
     private static final String COMPANY_CHECK_CHECK_ID = "CHECK_ID";
 
     private static final String CUSTOMER_CHECK_TABLE= "customer_check";
     private static final String CUSTOMER_CHECK_ID = "CUSTOMER_CHECK_ID";
     private static final String CUSTOMER_CHECK_CSTMR_ID_RECEIVE_FROM = "CUSTOMER_ID_RECEIVE_FROM";
     private static final String CUSTOMER_CHECK_CSTMR_NAME_RECEIVE_FROM = "CUSTOMER_NAME_RECEIVE_FROM";
+    private static final String CUSTOMER_CHECK_CHECK_ID = "CHECK_ID";
     private static final String CUSTOMER_CHECK_RECEIVE_DATE = "RECEIVE_DATE";
 
     private static final String WAREHOUSE_TABLE= "warehouse";
@@ -148,9 +148,9 @@ public class DbHelper extends SQLiteOpenHelper{
         String create_customer_table = "CREATE TABLE " +
                 CUSTOMER_TABLE + " ( " +
                 CUSTOMER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                CUSTOMER_PERSON_ID + " INT ," +
-                CUSTOMER_CREDIT + " INTIGER , " +
-                CUSTOMER_DEBT + " INTIGER , " +
+                CUSTOMER_PERSON_ID + " INTEGER ," +
+                CUSTOMER_CREDIT + " INTEGER , " +
+                CUSTOMER_DEBT + " INTEGER , " +
                 CUSTOMER_ADDRESS + " TEXT , " +
                 CUSTOMER_PHONE + " DOUBLE(15) , " +
                 CUSTOMER_CITY + " VARCHAR(25) ) ";
@@ -166,7 +166,7 @@ public class DbHelper extends SQLiteOpenHelper{
         String create_user_table = "CREATE TABLE " +
                 USER_TABLE + " ( " +
                 USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                USER_PERSON_ID + " INT )";
+                USER_PERSON_ID + " INTEGER )";
         db.execSQL(create_user_table);
 
         String create_bnk_account_table = "CREATE TABLE " +
@@ -190,11 +190,11 @@ public class DbHelper extends SQLiteOpenHelper{
                 TRANSACTIONS_TABLE + " ( " +
                 TRANSACTION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 TRANSACTION_DATE + " VARCHAR," +
-                TRANSACTION_BNK_ACNT_ID + " INT , " +
-                TRANSACTION_BOX_ID + " INT , " +
+                TRANSACTION_BNK_ACNT_ID + " INTEGER , " +
+                TRANSACTION_BOX_ID + " INTEGER , " +
                 TRANSACTION_DESCRIPTION + " TEXT , " +
                 TRANSACTION_CUSTOMER_ID + " INTEGER , " +
-                TRANSACTION_TRANSACTION_TYPE_ID +"INT," +
+                TRANSACTION_TRANSACTION_TYPE_ID +"INTEGER," +
                 TRANSACTION_TOTAL_AMOUNT + " DOUBLE , " +
                 TRANSACTION_CUSTOMER_NAME + " VARCHAR(25) ) ";
         db.execSQL(create_transaction_table);
@@ -212,7 +212,7 @@ public class DbHelper extends SQLiteOpenHelper{
         String create_installment_table = "CREATE TABLE " +
                 INSTALLMENT_TABLE + " ( " +
                 INSTALLMENT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                INSTALLMENT_CUSTOMER_ID + " INT," +
+                INSTALLMENT_CUSTOMER_ID + " INTEGER," +
                 INSTALLMENT_CUSTOMER_NAME + " VARCHAR(25) , " +
                 INSTALLMENT_START_DATE + " VARCHAR(10) , " +
                 INSTALLMENT_EACH_PAY_AMOUNT + " DOUBLE(10) , " +
@@ -229,22 +229,22 @@ public class DbHelper extends SQLiteOpenHelper{
                 CHECK_STATE + " VARCHAR(15) , " +
                 CHECK_ANNALS + " VARCHAR(10) , " +
                 CHECK_CSTMR_NAM_TO_PAY + " VARCHAR(25) , " +
-                CHECK_CSTMR_ID_TO_PAY + " INT , " +
+                CHECK_CSTMR_ID_TO_PAY + " INTEGER , " +
                 CHECK_PAYMENT_DATE + " VARCHAR(10) ) ";
         db.execSQL(create_check_table);
 
         String create_company_check_table = "CREATE TABLE " +
                 COMPANY_CHECK_TABLE + " ( " +
                 COMPANY_CHECK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                COMPANY_CHECK_CSTMR_ID + " INT," +
-                COMPANY_CHECK_CHECK_ID + " INT ) ";
+                COMPANY_CHECK_CHECK_ID + " INTEGER ) ";
         db.execSQL(create_company_check_table);
 
         String create_customer_check_table = "CREATE TABLE " +
                 CUSTOMER_CHECK_TABLE + " ( " +
                 CUSTOMER_CHECK_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                CUSTOMER_CHECK_CSTMR_ID_RECEIVE_FROM + " INT," +
-                CUSTOMER_CHECK_CSTMR_NAME_RECEIVE_FROM + " INTIGER(25) , " +
+                CUSTOMER_CHECK_CSTMR_ID_RECEIVE_FROM + " INTEGER," +
+                CUSTOMER_CHECK_CSTMR_NAME_RECEIVE_FROM + " INTEGER(25) , " +
+                CUSTOMER_CHECK_CHECK_ID + " INTEGER , "+
                 CUSTOMER_CHECK_RECEIVE_DATE + " VARCHAR(10) ) ";
         db.execSQL(create_customer_check_table);
 
@@ -265,11 +265,11 @@ public class DbHelper extends SQLiteOpenHelper{
                 PRODUCT_TABLE + " ( " +
                 PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 PRODUCT_NAME + " VARCHAR(30)," +
-                PRODUCT_GROUPING_ID + " INT , " +
+                PRODUCT_GROUPING_ID + " INTEGER , " +
                 PRODUCT_FIRST_STOCK + " VHARCHAR , " +
-                PRODUCT_WAREHOUSE_ID + " INT , " +
+                PRODUCT_WAREHOUSE_ID + " INTEGER , " +
                 PRODUCT_COST + " DOUBLE , " +
-                PRODUCT_COUNTING_UNIT_ID + " INT ) ";
+                PRODUCT_COUNTING_UNIT_ID + " INTEGER ) ";
         db.execSQL(create_product_table);
 
         String create_counting_unit_table = "CREATE TABLE " +
@@ -282,7 +282,7 @@ public class DbHelper extends SQLiteOpenHelper{
                 INVOICE_TABLE + " ( " +
                 INVOICE_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 INVOICE_CUSTOMER_NAME + " VARCHAR(25)," +
-                INVOICE_CUSTOMER_ID + " INT , " +
+                INVOICE_CUSTOMER_ID + " INTEGER , " +
                 INVOICE_INVOICE_TYPE + " VARCHAR(15) , " +
                 INVOICE_DESCRIPTION + " VHARCHAR(50) , " +
                 INVOICE_TOTAL_AMOUNT + " DOUBLE , " +
@@ -299,10 +299,10 @@ public class DbHelper extends SQLiteOpenHelper{
                 INVOICE_ITEM_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 INVOICE_ITEM_FEE + " DOUBLE," +
                 INVOICE_ITEM_AMOUNT + " DOUBLE , " +
-                INVOICE_ITEM_NUMBER + " INT , " +
-                INVOICE_ITEM_WAREHOUSE_ID + " INT , " +
+                INVOICE_ITEM_NUMBER + " INTEGER , " +
+                INVOICE_ITEM_WAREHOUSE_ID + " INTEGER , " +
                 INVOICE_ITEM_PRODUCT_NAME + " VARCHAR , " +
-                INVOICE_ITEM_PRODUCT_ID + " INT ) ";
+                INVOICE_ITEM_PRODUCT_ID + " INTEGER ) ";
         db.execSQL(create_invoice_item_table);
 
 

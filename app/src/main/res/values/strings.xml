@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">AccountingApp</string>
+    <string name="sell">فاکتور فروش</string>
+    <string name="buy">فاکتور خرید</string>
+    <string name="receive">دریافت</string>
+    <string name="pay">پرداخت</string>
+    <string name="income">درآمد</string>
+    <string name="cost">هزینه</string>
+    <string name="check">مدیریت چک ها</string>
+    <string name="installment">مدیریت اقساط</string>
+    <string name="customer">طرف حساب ها</string>
+    <string name="account">حساب های بانکی</string>
+    <string name="wrhus_prdct">کالاها و انبار</string>
+    <string name="edit">ویرایش اسناد</string>
+    <string name="report">گزارش ها</string>
+
+
+
+
+
+
+
+
+
+
 </resources>
