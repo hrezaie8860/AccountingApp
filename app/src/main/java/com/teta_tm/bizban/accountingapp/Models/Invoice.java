@@ -3,19 +3,19 @@ package com.teta_tm.bizban.accountingapp.Models;
 public class Invoice {
 
     String cstmrName;
-    String cstmrId;
+    Integer cstmrId;
     String invocTyp;
     String dscrip;
     String ttalAmnt;
     String addition;
     String dduction;
     String invcDate;
-    String invcItmId;
+    Integer invcItmId;
     String discnt;
     String ttalBlnc;
 
 
-    public Invoice(String cstmrName, String invocTyp, String ttalAmnt, String invcDate, String invcItmId) {
+    public Invoice(String cstmrName, String invocTyp, String ttalAmnt, String invcDate, Integer invcItmId) {
         this.cstmrName = cstmrName;
         this.invocTyp = invocTyp;
         this.ttalAmnt = ttalAmnt;
@@ -34,11 +34,11 @@ public class Invoice {
         this.cstmrName = cstmrName;
     }
 
-    public String getCstmrId() {
+    public Integer getCstmrId() {
         return cstmrId;
     }
 
-    public void setCstmrId(String cstmrId) {
+    public void setCstmrId(Integer cstmrId) {
         this.cstmrId = cstmrId;
     }
 
@@ -90,11 +90,11 @@ public class Invoice {
         this.invcDate = invcDate;
     }
 
-    public String getInvcItmId() {
+    public Integer getInvcItmId() {
         return invcItmId;
     }
 
-    public void setInvcItmId(String invcItmId) {
+    public void setInvcItmId(Integer invcItmId) {
         this.invcItmId = invcItmId;
     }
 

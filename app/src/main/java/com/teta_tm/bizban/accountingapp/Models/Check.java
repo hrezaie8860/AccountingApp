@@ -8,7 +8,7 @@ public class Check {
     String state;
     String annals;
     String cstmrNamToPy;
-    String cstmrIdToPy;
+    Integer cstmrIdToPy;
     String pyDate;
 
 
@@ -72,11 +72,11 @@ public class Check {
         this.cstmrNamToPy = cstmrNamToPy;
     }
 
-    public String getCstmrIdToPy() {
+    public Integer getCstmrIdToPy() {
         return cstmrIdToPy;
     }
 
-    public void setCstmrIdToPy(String cstmrIdToPy) {
+    public void setCstmrIdToPy(Integer cstmrIdToPy) {
         this.cstmrIdToPy = cstmrIdToPy;
     }
 
